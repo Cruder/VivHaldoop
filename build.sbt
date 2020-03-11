@@ -17,6 +17,8 @@ libraryDependencies ++= Seq(
 
 libraryDependencies += "org.apache.bahir" %% "spark-streaming-twitter" % "2.4.0"
 
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.8" % "test"
+
 libraryDependencies ++= Seq(
   "org.twitter4j" % "twitter4j-core" % twitterApiVersion,
   "org.twitter4j" % "twitter4j-stream" % twitterApiVersion
