@@ -1,12 +1,17 @@
 package com.cruder.vivhaldoop.share
 
-import org.apache.spark.sql.SparkSession
+import com.cruder.vivhaldoop.share.AppProperties.appProperties
+import org.apache.spark.sql.SparkSession;
 
 object SharedSpark {
 
-  val spark: SparkSession = SparkSession
-    .builder()
-    .master("local")
-    .appName("vivhaldoop")
-    .getOrCreate()
+  private def init = () => {
+    SparkSession
+      .builder()
+      .master(appProperties.getProperty("spark.master"))
+      .appName(appProperties.getProperty("app.name"))
+      .getOrCreate()
+  }
+
+  val spark: SparkSession = init()
 }
