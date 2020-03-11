@@ -1,3 +1,5 @@
+package com.cruder.vivhaldoop
+
 object HelloWorld {
   def main(args: Array[String]): Unit = {
     println("Hello World")
