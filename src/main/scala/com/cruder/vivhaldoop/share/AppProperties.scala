@@ -5,7 +5,8 @@ import java.util.Properties
 
 object AppProperties {
   private def init = () => {
-    val input = new FileInputStream("app.properties")
+
+    val input = new FileInputStream("src/main/resources/app.properties")
     val prop = new Properties()
     try {
       prop.load(input)
