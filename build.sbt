@@ -1,8 +1,8 @@
-name := "project"
+name := "vivhaldoop"
 
 version := "0.1"
 
-scalaVersion := "2.12.0"
+scalaVersion := "2.12.10"
 
 val sparkVersion = "2.4.5"
 val twitterApiVersion = "4.0.7"
