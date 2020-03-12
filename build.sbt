@@ -4,7 +4,7 @@ version := "0.1"
 
 scalaVersion := "2.12.10"
 
-val sparkVersion = "2.4.5"
+val sparkVersion = "2.4.0"
 val twitterApiVersion = "4.0.7"
 
 //scala
@@ -16,9 +16,15 @@ libraryDependencies ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "org.twitter4j" % "twitter4j-core" % twitterApiVersion ,
+  "org.twitter4j" % "twitter4j-core" % twitterApiVersion,
   "org.twitter4j" % "twitter4j-stream" % twitterApiVersion
 )
 
 // test
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.8" % "test"
+
+assemblyMergeStrategy in assembly := {
+  case PathList("org", "apache", "spark", "unused", "UnusedStubClass.class") => MergeStrategy.first
+  case x => (assemblyMergeStrategy in assembly).value(x)
+}
+
