@@ -1,0 +1,1 @@
+<coordinator-app name="MY_APP" frequency="* 0-23 * * *" timezone="UTC" xmlns="uri:oozie:coordinator:0.5" />
