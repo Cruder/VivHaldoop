@@ -1,7 +1,8 @@
 # sbt
 # (may want to keep parts of 'project')
 bin/
-project/
+project/*
+!project/plugins.sbt
 target/
 build/
 
@@ -11,6 +12,7 @@ build
 .project
 .settings
 .worksheet
+
 
 # intellij idea
 *.log
