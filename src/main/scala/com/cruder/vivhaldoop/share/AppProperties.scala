@@ -1,25 +1,21 @@
 package com.cruder.vivhaldoop.share
 
-import java.io.{FileInputStream, IOException}
+import java.io.{FileInputStream, IOException, File}
 import java.util.Properties
 
 object AppProperties {
   private def init = () => {
 
-    val input = new FileInputStream("src/main/resources/app.properties")
     val prop = new Properties()
     try {
-      prop.load(input)
-      prop.stringPropertyNames().stream()
-        .filter(key => key.startsWith("twitter4j"))
-        .forEach(key => System.setProperty(key,prop.getProperty(key)))
+      val properties = new File("app.properties")
+      prop.load(new FileInputStream(properties))
     } catch {
       case io: IOException =>
         io.printStackTrace()
-    } finally if (input != null) input.close()
+    }
     prop
   }
 
   val appProperties: Properties = init()
-
 }

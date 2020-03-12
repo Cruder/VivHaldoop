@@ -13,9 +13,9 @@ object HelloWorld {
   def main(args: Array[String]): Unit = {
     println("Hello World")
 
-    println(appProperties)
-    val sparkConfig: SparkConf = new SparkConf().setAppName(appProperties.getProperty("app.name"))
-    if (!sparkConfig.contains("spark.master")) sparkConfig.setMaster("local")
+    val sparkConfig = new SparkConf()
+      .setAppName(appProperties.getProperty("app.name"))
+
     val jssc = new JavaStreamingContext(sparkConfig, Seconds(10))
     val stream = TwitterUtils.createStream(jssc)
 
