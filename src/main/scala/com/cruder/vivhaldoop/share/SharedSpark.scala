@@ -8,7 +8,6 @@ object SharedSpark {
   private def init = () => {
     SparkSession
       .builder()
-      .master(appProperties.getProperty("spark.master"))
       .appName(appProperties.getProperty("app.name"))
       .getOrCreate()
   }
