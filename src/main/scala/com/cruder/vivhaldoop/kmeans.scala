@@ -1,5 +1,6 @@
 import scala.math.{pow, sqrt}
 import scala.util.Random
+import org.apache.spark.sql.DataFrame
 
 case class Point(x: Double, y: Double, cat: Int)
 
