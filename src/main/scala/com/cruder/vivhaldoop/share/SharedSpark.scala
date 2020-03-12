@@ -1,7 +1,7 @@
 package com.cruder.vivhaldoop.share
 
 import com.cruder.vivhaldoop.share.AppProperties.appProperties
-import org.apache.spark.sql.SparkSession;
+import org.apache.spark.sql.SparkSession
 
 object SharedSpark {
 
