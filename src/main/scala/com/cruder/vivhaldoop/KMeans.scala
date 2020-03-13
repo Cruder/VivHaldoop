@@ -55,7 +55,7 @@ object KMeans {
     val rdd = spark.sparkContext.parallelize(values)
     spark.createDataFrame(rdd)
   }
-/*
+
   /**
     * Returns the centers of each categories
     *
@@ -68,7 +68,7 @@ object KMeans {
         values.filter(t => t.cat == i).foldLeft(0.0)(_ + _.x) / values.count(t => t.cat == i) // Average of x
         , values.filter(t => t.cat == i).foldLeft(0.0)(_ + _.y) / values.count(t => t.cat == i) // Average of y
         , i) // Category
-      ) toArray*/
+      ) toArray
 
   /**
     * Sums 2 Point coordinates
