@@ -1,0 +1,100 @@
+[
+{
+  "model": "desktop.document2",
+  "pk": 117,
+  "fields": {
+    "owner": [
+      "vivhaldoop"
+    ],
+    "name": "VivhaldoopWorkflow",
+    "description": "",
+    "uuid": "9a277ae4-ba8b-1057-cca3-5f006a65cb86",
+    "type": "oozie-workflow2",
+    "data": "{\"layout\": [{\"oozieRows\": [{\"enableOozieDropOnBefore\": true, \"enableOozieDropOnSide\": true, \"enableOozieDrop\": false, \"widgets\": [{\"status\": \"\", \"logsURL\": \"\", \"name\": \"Spark\", \"widgetType\": \"spark-widget\", \"oozieMovable\": true, \"ooziePropertiesExpanded\": false, \"gridsterHeight\": 0, \"externalJobId\": \"\", \"isEditing\": false, \"properties\": {}, \"externalId\": \"\", \"isLoading\": false, \"offset\": 0, \"actionURL\": \"\", \"progress\": 0, \"externalIdUrl\": \"\", \"klass\": \"card card-widget span12\", \"oozieExpanded\": false, \"id\": \"fea6d873-45fc-066a-2f4c-ef865783a060\", \"size\": 12}], \"id\": \"9efa7454-cf75-2d42-f560-7bc462bfc4c4\", \"columns\": []}], \"rows\": [{\"enableOozieDropOnBefore\": true, \"enableOozieDropOnSide\": true, \"enableOozieDrop\": false, \"widgets\": [{\"status\": \"\", \"logsURL\": \"\", \"name\": \"Start\", \"widgetType\": \"start-widget\", \"oozieMovable\": false, \"ooziePropertiesExpanded\": false, \"gridsterHeight\": 0, \"externalJobId\": \"\", \"isEditing\": false, \"properties\": {}, \"externalId\": \"\", \"isLoading\": false, \"offset\": 0, \"actionURL\": \"\", \"progress\": 0, \"externalIdUrl\": \"\", \"klass\": \"card card-widget span12\", \"oozieExpanded\": false, \"id\": \"3f107997-04cc-8733-60a9-a4bb62cebffc\", \"size\": 12}], \"id\": \"0e3bf9dd-3956-8289-d6cc-3e73e7dcd5e4\", \"columns\": []}, {\"enableOozieDropOnBefore\": true, \"enableOozieDropOnSide\": true, \"enableOozieDrop\": false, \"widgets\": [{\"status\": \"\", \"logsURL\": \"\", \"name\": \"Spark\", \"widgetType\": \"spark-widget\", \"oozieMovable\": true, \"ooziePropertiesExpanded\": false, \"gridsterHeight\": 0, \"externalJobId\": \"\", \"isEditing\": false, \"properties\": {}, \"externalId\": \"\", \"isLoading\": false, \"offset\": 0, \"actionURL\": \"\", \"progress\": 0, \"externalIdUrl\": \"\", \"klass\": \"card card-widget span12\", \"oozieExpanded\": false, \"id\": \"fea6d873-45fc-066a-2f4c-ef865783a060\", \"size\": 12}], \"id\": \"9efa7454-cf75-2d42-f560-7bc462bfc4c4\", \"columns\": []}, {\"enableOozieDropOnBefore\": true, \"enableOozieDropOnSide\": true, \"enableOozieDrop\": false, \"widgets\": [{\"status\": \"\", \"logsURL\": \"\", \"name\": \"End\", \"widgetType\": \"end-widget\", \"oozieMovable\": false, \"ooziePropertiesExpanded\": false, \"gridsterHeight\": 0, \"externalJobId\": \"\", \"isEditing\": false, \"properties\": {}, \"externalId\": \"\", \"isLoading\": false, \"offset\": 0, \"actionURL\": \"\", \"progress\": 0, \"externalIdUrl\": \"\", \"klass\": \"card card-widget span12\", \"oozieExpanded\": false, \"id\": \"33430f0f-ebfa-c3ec-f237-3e77efa03d0a\", \"size\": 12}], \"id\": \"01b073d5-9567-6aa5-5ddb-af6033c5ff3a\", \"columns\": []}, {\"enableOozieDropOnBefore\": true, \"enableOozieDropOnSide\": true, \"enableOozieDrop\": false, \"widgets\": [{\"status\": \"\", \"logsURL\": \"\", \"name\": \"Kill\", \"widgetType\": \"kill-widget\", \"oozieMovable\": true, \"ooziePropertiesExpanded\": false, \"gridsterHeight\": 0, \"externalJobId\": \"\", \"isEditing\": false, \"properties\": {}, \"externalId\": \"\", \"isLoading\": false, \"offset\": 0, \"actionURL\": \"\", \"progress\": 0, \"externalIdUrl\": \"\", \"klass\": \"card card-widget span12\", \"oozieExpanded\": false, \"id\": \"17c9c895-5a16-7443-bb81-f34b30b21548\", \"size\": 12}], \"id\": \"7263f4e5-7eb5-60cf-11bf-2195ce1dec8f\", \"columns\": []}], \"oozieEndRow\": {\"enableOozieDropOnBefore\": true, \"enableOozieDropOnSide\": true, \"enableOozieDrop\": false, \"widgets\": [{\"status\": \"\", \"logsURL\": \"\", \"name\": \"End\", \"widgetType\": \"end-widget\", \"oozieMovable\": false, \"ooziePropertiesExpanded\": false, \"gridsterHeight\": 0, \"externalJobId\": \"\", \"isEditing\": false, \"properties\": {}, \"externalId\": \"\", \"isLoading\": false, \"offset\": 0, \"actionURL\": \"\", \"progress\": 0, \"externalIdUrl\": \"\", \"klass\": \"card card-widget span12\", \"oozieExpanded\": false, \"id\": \"33430f0f-ebfa-c3ec-f237-3e77efa03d0a\", \"size\": 12}], \"id\": \"01b073d5-9567-6aa5-5ddb-af6033c5ff3a\", \"columns\": []}, \"oozieKillRow\": {\"enableOozieDropOnBefore\": true, \"enableOozieDropOnSide\": true, \"enableOozieDrop\": false, \"widgets\": [{\"status\": \"\", \"logsURL\": \"\", \"name\": \"Kill\", \"widgetType\": \"kill-widget\", \"oozieMovable\": true, \"ooziePropertiesExpanded\": false, \"gridsterHeight\": 0, \"externalJobId\": \"\", \"isEditing\": false, \"properties\": {}, \"externalId\": \"\", \"isLoading\": false, \"offset\": 0, \"actionURL\": \"\", \"progress\": 0, \"externalIdUrl\": \"\", \"klass\": \"card card-widget span12\", \"oozieExpanded\": false, \"id\": \"17c9c895-5a16-7443-bb81-f34b30b21548\", \"size\": 12}], \"id\": \"7263f4e5-7eb5-60cf-11bf-2195ce1dec8f\", \"columns\": []}, \"enableOozieDropOnAfter\": true, \"oozieStartRow\": {\"enableOozieDropOnBefore\": true, \"enableOozieDropOnSide\": true, \"enableOozieDrop\": false, \"widgets\": [{\"status\": \"\", \"logsURL\": \"\", \"name\": \"Start\", \"widgetType\": \"start-widget\", \"oozieMovable\": false, \"ooziePropertiesExpanded\": false, \"gridsterHeight\": 0, \"externalJobId\": \"\", \"isEditing\": false, \"properties\": {}, \"externalId\": \"\", \"isLoading\": false, \"offset\": 0, \"actionURL\": \"\", \"progress\": 0, \"externalIdUrl\": \"\", \"klass\": \"card card-widget span12\", \"oozieExpanded\": false, \"id\": \"3f107997-04cc-8733-60a9-a4bb62cebffc\", \"size\": 12}], \"id\": \"0e3bf9dd-3956-8289-d6cc-3e73e7dcd5e4\", \"columns\": []}, \"klass\": \"card card-home card-column span12\", \"enableOozieDropOnBefore\": true, \"drops\": [\"temp\"], \"id\": \"b7766809-6e31-6ea3-3fdd-72575e939b69\", \"size\": 12}], \"workflow\": {\"properties\": {\"job_xml\": \"\", \"description\": \"\", \"parameters\": [{\"name\": \"oozie.use.system.libpath\", \"value\": true}], \"sla_enabled\": false, \"deployment_dir\": \"/user/hue/oozie/workspaces/hue-oozie-1584092421.31\", \"schema_version\": \"uri:oozie:workflow:0.5\", \"sla\": [{\"value\": false, \"key\": \"enabled\"}, {\"value\": \"${nominal_time}\", \"key\": \"nominal-time\"}, {\"value\": \"\", \"key\": \"should-start\"}, {\"value\": \"${30 * MINUTES}\", \"key\": \"should-end\"}, {\"value\": \"\", \"key\": \"max-duration\"}, {\"value\": \"\", \"key\": \"alert-events\"}, {\"value\": \"\", \"key\": \"alert-contact\"}, {\"value\": \"\", \"key\": \"notification-msg\"}, {\"value\": \"\", \"key\": \"upstream-apps\"}], \"show_arrows\": true, \"wf1_id\": null, \"properties\": []}, \"name\": \"VivhaldoopWorkflow\", \"hasKillNode\": true, \"versions\": [\"uri:oozie:workflow:0.4\", \"uri:oozie:workflow:0.4.5\", \"uri:oozie:workflow:0.5\"], \"isDirty\": false, \"movedNode\": null, \"linkMapping\": {\"fea6d873-45fc-066a-2f4c-ef865783a060\": [\"33430f0f-ebfa-c3ec-f237-3e77efa03d0a\"], \"33430f0f-ebfa-c3ec-f237-3e77efa03d0a\": [], \"3f107997-04cc-8733-60a9-a4bb62cebffc\": [\"fea6d873-45fc-066a-2f4c-ef865783a060\"], \"17c9c895-5a16-7443-bb81-f34b30b21548\": []}, \"nodeIds\": [\"3f107997-04cc-8733-60a9-a4bb62cebffc\", \"33430f0f-ebfa-c3ec-f237-3e77efa03d0a\", \"17c9c895-5a16-7443-bb81-f34b30b21548\", \"fea6d873-45fc-066a-2f4c-ef865783a060\"], \"nodes\": [{\"name\": \"Start\", \"associatedDocumentLoading\": true, \"children\": [{\"to\": \"fea6d873-45fc-066a-2f4c-ef865783a060\"}], \"actionParametersFetched\": false, \"properties\": {}, \"associatedDocumentUuid\": null, \"type\": \"start-widget\", \"id\": \"3f107997-04cc-8733-60a9-a4bb62cebffc\", \"actionParameters\": []}, {\"name\": \"End\", \"associatedDocumentLoading\": true, \"children\": [], \"actionParametersFetched\": false, \"properties\": {\"body\": \"\", \"cc\": \"\", \"to\": \"\", \"enableMail\": false, \"attachment\": \"\", \"content_type\": \"text/plain\", \"subject\": \"\"}, \"associatedDocumentUuid\": null, \"type\": \"end-widget\", \"id\": \"33430f0f-ebfa-c3ec-f237-3e77efa03d0a\", \"actionParameters\": []}, {\"name\": \"Kill\", \"associatedDocumentLoading\": true, \"children\": [], \"actionParametersFetched\": false, \"properties\": {\"body\": \"\", \"cc\": \"\", \"to\": \"\", \"enableMail\": false, \"message\": \"L'action a \\u00e9chou\\u00e9, message d'erreur[${wf:errorMessage(wf:lastErrorNode())}]\", \"subject\": \"\"}, \"associatedDocumentUuid\": null, \"type\": \"kill-widget\", \"id\": \"17c9c895-5a16-7443-bb81-f34b30b21548\", \"actionParameters\": []}, {\"name\": \"spark-fea6\", \"associatedDocumentLoading\": true, \"children\": [{\"to\": \"33430f0f-ebfa-c3ec-f237-3e77efa03d0a\"}, {\"error\": \"17c9c895-5a16-7443-bb81-f34b30b21548\"}], \"actionParametersFetched\": false, \"properties\": {\"files\": [{\"value\": \"/user/vivhaldoop/vivhaldoop.jar\"}], \"job_xml\": \"\", \"app_name\": \"MySpark\", \"spark_opts\": \"\", \"retry_max\": [], \"retry_interval\": [], \"job_properties\": [], \"sla\": [{\"key\": \"enabled\", \"value\": false}, {\"key\": \"nominal-time\", \"value\": \"${nominal_time}\"}, {\"key\": \"should-start\", \"value\": \"\"}, {\"key\": \"should-end\", \"value\": \"${30 * MINUTES}\"}, {\"key\": \"max-duration\", \"value\": \"\"}, {\"key\": \"alert-events\", \"value\": \"\"}, {\"key\": \"alert-contact\", \"value\": \"\"}, {\"key\": \"notification-msg\", \"value\": \"\"}, {\"key\": \"upstream-apps\", \"value\": \"\"}], \"prepares\": [], \"mode\": \"client\", \"spark_arguments\": [], \"spark_master\": \"yarn\", \"credentials\": [], \"jars\": \"vivhaldoop.jar\", \"class\": \"TopTweets\", \"archives\": []}, \"associatedDocumentUuid\": null, \"type\": \"spark-widget\", \"id\": \"fea6d873-45fc-066a-2f4c-ef865783a060\", \"actionParameters\": []}], \"id\": 117, \"nodeNamesMapping\": {\"fea6d873-45fc-066a-2f4c-ef865783a060\": \"spark-fea6\", \"33430f0f-ebfa-c3ec-f237-3e77efa03d0a\": \"End\", \"3f107997-04cc-8733-60a9-a4bb62cebffc\": \"Start\", \"17c9c895-5a16-7443-bb81-f34b30b21548\": \"Kill\"}, \"uuid\": \"9a277ae4-ba8b-1057-cca3-5f006a65cb86\"}}",
+    "extra": "",
+    "search": null,
+    "last_modified": "2020-03-13T09:23:06",
+    "version": 1,
+    "is_history": false,
+    "is_managed": false,
+    "is_trashed": false,
+    "parent_directory": [
+      "3f6bd074-bf04-4914-a394-f61985f69a96",
+      1,
+      false
+    ],
+    "dependencies": [
+      [
+        "412150c8-3d1a-424b-b848-a9b7443fa3b9",
+        1,
+        true
+      ],
+      [
+        "4a831831-6245-4823-9de5-5d378e45ce70",
+        1,
+        true
+      ]
+    ]
+  }
+},
+{
+  "model": "desktop.document2",
+  "pk": 183,
+  "fields": {
+    "owner": [
+      "vivhaldoop"
+    ],
+    "name": "VivhaldoopCron",
+    "description": "",
+    "uuid": "7bfbb158-b117-cc2f-08fc-99809992f73c",
+    "type": "oozie-coordinator2",
+    "data": "{\"properties\": {\"job_xml\": \"\", \"timeout\": null, \"document\": null, \"end\": \"${end_date}\", \"description\": \"\", \"frequency_number\": 1, \"workflow\": \"9a277ae4-ba8b-1057-cca3-5f006a65cb86\", \"deployment_dir\": \"/user/hue/oozie/workspaces/hue-oozie-1584116712.43\", \"cron_frequency\": \"0 * * * *\", \"frequency_unit\": \"days\", \"schema_version\": \"uri:oozie:coordinator:0.2\", \"cron_advanced\": false, \"start\": \"${start_date}\", \"parameters\": [{\"name\": \"oozie.use.system.libpath\", \"value\": true}, {\"name\": \"start_date\", \"value\": \"2020-03-13T00:00\"}, {\"name\": \"end_date\", \"value\": \"2021-03-20T00:00\"}], \"concurrency\": 0, \"timezone\": \"Europe/Paris\", \"credentials\": [], \"throttle\": 0, \"execution\": \"FIFO\", \"sla\": [{\"key\": \"enabled\", \"value\": false}, {\"key\": \"nominal-time\", \"value\": \"${nominal_time}\"}, {\"key\": \"should-start\", \"value\": \"\"}, {\"key\": \"should-end\", \"value\": \"${30 * MINUTES}\"}, {\"key\": \"max-duration\", \"value\": \"\"}, {\"key\": \"alert-events\", \"value\": \"\"}, {\"key\": \"alert-contact\", \"value\": \"\"}, {\"key\": \"notification-msg\", \"value\": \"\"}, {\"key\": \"upstream-apps\", \"value\": \"\"}]}, \"name\": \"VivhaldoopCron\", \"end_date\": {\"name\": \"end_date\", \"value\": \"2021-03-20T00:00\"}, \"variables\": [], \"start_date\": {\"name\": \"start_date\", \"value\": \"2020-03-13T00:00\"}, \"showAdvancedFrequencyUI\": true, \"isManaged\": false, \"variablesUI\": [\"parameter\", \"input_path\", \"output_path\"], \"workflowParameters\": [], \"isDirty\": true, \"id\": null, \"uuid\": \"7bfbb158-b117-cc2f-08fc-99809992f73c\"}",
+    "extra": "",
+    "search": null,
+    "last_modified": "2020-03-13T09:25:50",
+    "version": 1,
+    "is_history": false,
+    "is_managed": false,
+    "is_trashed": false,
+    "parent_directory": [
+      "3f6bd074-bf04-4914-a394-f61985f69a96",
+      1,
+      false
+    ],
+    "dependencies": [
+      [
+        "9a277ae4-ba8b-1057-cca3-5f006a65cb86",
+        1,
+        false
+      ]
+    ]
+  }
+},
+{
+  "model": "desktop.document2",
+  "pk": 184,
+  "fields": {
+    "owner": [
+      "vivhaldoop"
+    ],
+    "name": "vivhaldoop",
+    "description": "",
+    "uuid": "3f6bd074-bf04-4914-a394-f61985f69a96",
+    "type": "directory",
+    "data": "{}",
+    "extra": "",
+    "search": null,
+    "last_modified": "2020-03-13T09:27:00",
+    "version": 1,
+    "is_history": false,
+    "is_managed": false,
+    "is_trashed": false,
+    "parent_directory": [
+      "b266a0c8-8a44-494b-a2b3-4dbf44ba41c8",
+      1,
+      false
+    ],
+    "dependencies": []
+  }
+}
+]

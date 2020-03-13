@@ -24,12 +24,36 @@ cp app.template.properties app.properties
 
 Ensuite modifier le fichier en mettant vos tokens twitter.
 
+Faites un
+
+```sh
+sbt package
+ssh <user>@<domain> -t "mkdir -p app"
+scp target/scala-2.12/vivhaldoop_2.12-0.1.jar <user>@<domain>:app/vivhaldoop.jar
+ssh <user>@<domain> -t "
+hdfs dfs -rm vivhaldoop.jar;
+hdfs dfs -rm app.properties;
+hdfs dfs -copyFromLocal app/vivhaldoop.jar vivhaldoop.jar;
+hdfs dfs -copyFromLocal app/app.properties app.properties
+"
+```
+
+Ceci vas générer, copier, et mettre sur le hdfs l'exécutable et sa configuration.
+
+### Deploy travis CD
+
+Il faudra ajouter un clef privé pour faire fonctionner travis avec le nouveau cluster.
+
+https://oncletom.io/2016/travis-ssh-deploy/
+
+
 ## Structure du projet
 
 La classe `HelloWorld` est le main de principal de l'application.
 C'est lui qui vas récupérer les tweets.
 
-<!-- La suite a compléter avec l'équipe -->
+La classe `KMeans` est celle qui vas appliquer l'algorithme des K-Means sur les données
+collectée.
 
 ## Décisions du projet
 
