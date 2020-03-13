@@ -1,12 +1,22 @@
 package com.cruder.vivhaldoop
 
+import org.apache.spark.rdd.RDD
+
 import scala.math.{pow, sqrt}
 import scala.util.Random
 import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.spark.sql.functions.lit
 
 case class Point(x: Double, y: Double, cat: Int)
 
 object KMeans {
+  def main(args: Array[String]): Unit = {
+    val spark: SparkSession = SparkSession.builder().getOrCreate()
+    val df: DataFrame = spark.read.json("/user/vivhaldoop/tweets.json")
+
+   //df.select($"lat".alias(), $"long", lit(0).alias("cat"))
+  }
+
   /**
     * returns a Point with the index of the closest center
     */
@@ -43,7 +53,7 @@ object KMeans {
   /**
     * Returns the centers of each categories
     *
-    * @param k      number of centers
+    * @param k      Number of centers
     * @param values The values to use
     */
   def getCenters(k: Int, values: Array[Point]): Array[Point] =
@@ -54,6 +64,16 @@ object KMeans {
         , i) // Category
       ) toArray
 
+
+  /**
+    * Sums 2 Point coordinates
+    *
+    * @param p1  The first Point
+    * @param p2  The second Point
+    */
+  def sumPoints(p1: Point, p2: Point): Point =
+    Point(p1.x + p2.x, p1.y + p2.y, p1.cat)
+
   /**
     * Returns a DataFrame with 3 columns
     *
@@ -61,27 +81,35 @@ object KMeans {
     * @param values     The values of lat/long or nbWords/nbHashtags.
     * @param iterations Number of iterations of the algorithm
     */
-  def kmeans(k: Int, values: Array[Point], iterations: Int): Array[Point] = {
+  def kmeans(k: Int, values: RDD[Point], iterations: Int): RDD[Point] = {
     // Initialization
     val r: Random = Random
 
     // Construction de la liste avec une catégorie aléatoire
-    var arr: Array[Point] =
+    val arr: RDD[Point] =
         values.map(o => Point(o.x, o.y, r.nextInt(k)))
 
-    // k-first centers as Array
-    var centers: Array[Point] = (
+    // k-first centers as Array // takeSample
+    var centers: Array[Point] =
+      arr.takeSample(withReplacement = true, k)
+
+   /* var centers: Array[Point] = (
       for (i <- 0 until k)
         yield Point(arr(i).x, arr(i).y, i)
       ) toArray
+*/
 
     // Cycles
     for (_ <- 0 until iterations) {
-      // Assignation aux clusters
-      arr = arr.map(t => closest(centers, t))
-
       // Calcul des nouveaux centres
-      centers = getCenters(k, arr)
+      centers =
+        arr
+          .map(t => closest(centers, t))
+          .map(t => (t.cat, (t, 1.0)))
+          .reduceByKey{(p1, p2) => (sumPoints(p1._1, p2._1), p1._2 + p2._2)}
+          .map{case (cat, (p, cpt)) => (cat, Point(p.x / cpt, p.y / cpt, cat))}
+          .map(t => t._2)
+          .collect()
     }
 
     // Assignation finale
