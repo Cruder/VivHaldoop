@@ -32,3 +32,4 @@ mainClass in assembly := Some(s"$path.HelloWorld")
 
 //mainClass in assembly := Some(s"$path.TopTweets")
 //assemblyJarName in assembly := "vivhaldoop-top_tweets.jar"
+
