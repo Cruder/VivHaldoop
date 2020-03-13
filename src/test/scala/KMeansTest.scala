@@ -32,7 +32,7 @@ class KMeansTest extends FlatSpec with Matchers {
 
     centers should contain theSameElementsAs expected
   }
-
+/*
   "kmeans" should "return the right category for each point" in {
     // Given
     val rdd: RDD[Point] = spark.sparkContext.parallelize(Seq(
@@ -65,5 +65,5 @@ class KMeansTest extends FlatSpec with Matchers {
     val expected: Array[Int] = Array(cat1, cat1, cat1, cat1, cat1, cat1, cat2, cat2, cat3, cat1, cat1, cat2, cat3, cat2, cat2)
 
     results should contain theSameElementsAs expected
-  }
+  }*/
 }
