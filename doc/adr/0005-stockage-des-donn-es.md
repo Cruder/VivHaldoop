@@ -8,12 +8,12 @@ Proposed
 
 ## Context
 
-
+Stocker les données pour le traitement des tweets.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+Utiliser Hive pour enregistrer les données.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+Création de tables dans Hive.
