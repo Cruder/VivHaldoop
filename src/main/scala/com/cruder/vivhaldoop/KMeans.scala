@@ -7,13 +7,12 @@ import scala.util.Random
 import scala.language.postfixOps
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.functions.lit
-import com.cruder.vivhaldoop.share.AppProperties.path
+import com.cruder.vivhaldoop.share.AppProperties.{spark, path}
 
 case class Point(x: Double, y: Double, cat: Int)
 
 object KMeans {
   def main(args: Array[String]): Unit = {
-    val spark: SparkSession = SparkSession.builder().master("local[*]").getOrCreate()
     val df: DataFrame = spark.read.json(path + "tweets.json")
 
     import spark.sqlContext.implicits._
