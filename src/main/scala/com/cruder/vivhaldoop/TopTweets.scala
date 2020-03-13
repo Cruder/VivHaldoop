@@ -22,18 +22,14 @@ object TopTweets {
 
 //    //    EVOLUTION
     val last_trends_dataframe = spark.sql("select * from twitter.last_trends")
-    val trends_dataframe = count_dataframe.join(last_trends_dataframe, "hashtag")
-      .withColumn("diff_rank", last_trends_dataframe("rank") - count_dataframe("rank"))
-      .withColumn("diff_count", last_trends_dataframe("count") - count_dataframe("count"))
-      .drop(last_trends_dataframe("rank"))
-      .drop(last_trends_dataframe("count"))
-      .drop(count_dataframe("count"))
-      .drop(count_dataframe("count"))
+//    val trends_dataframe = count_dataframe.join(last_trends_dataframe, "hashtag")
+//      .withColumn("diff_rank", last_trends_dataframe("rank") - count_dataframe("rank"))
+//      .withColumn("diff_count", last_trends_dataframe("count") - count_dataframe("count"))
 
-    trends_dataframe.printSchema()
+//    trends_dataframe.printSchema()
 
     count_dataframe.write.mode("overwrite").saveAsTable("twitter.last_trends")
-    trends_dataframe.write.mode("overwrite").saveAsTable("twitter.trends")
+//    trends_dataframe.write.mode("overwrite").saveAsTable("twitter.trends")
 
     //    TOP 10
     val top_hashtags_dataframe = count_dataframe
