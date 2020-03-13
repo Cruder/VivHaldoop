@@ -14,13 +14,14 @@ case class Point(x: Double, y: Double, cat: Int)
 
 object KMeans {
   def main(args: Array[String]): Unit = {
+    /*
     val df: DataFrame = spark.read.json("tweets2.json")
 
     import spark.sqlContext.implicits._
     val rdd: RDD[Point] =
         df.select(df("lat").cast(DoubleType).alias("x"), df("long").cast(DoubleType).alias("y"), lit(0).alias("cat")).as[Point].rdd
 
-    val rddKMeans: RDD[Point] = kmeans(4, rdd, 1000)
+    val rddKMeans: RDD[Point] = kmeans(4, rdd, 1000)*/
     //rddKMeans.toDF().write.option("path", path).saveAsTable("kmeans")
   }
 
