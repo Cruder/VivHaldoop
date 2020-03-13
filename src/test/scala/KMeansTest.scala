@@ -1,8 +1,12 @@
 import com.cruder.vivhaldoop.Point
 import com.cruder.vivhaldoop.KMeans
+import org.apache.spark.rdd.RDD
+import org.apache.spark.sql.SparkSession
 import org.scalatest.{FlatSpec, Matchers}
 
 class KMeansTest extends FlatSpec with Matchers {
+  val spark: SparkSession = SparkSession.builder().master("local[*]").getOrCreate()
+
   "closest" should "return a Point with the index of the closest center" in {
     // Given
     val centers: Array[Point] = Array(Point(0, 0, 0), Point(100, 100, 1), Point(-1000, -1000, 2))
@@ -31,7 +35,7 @@ class KMeansTest extends FlatSpec with Matchers {
 
   "kmeans" should "return the right category for each point" in {
     // Given
-    val data: Array[Point] = Array(
+    val rdd: RDD[Point] = spark.sparkContext.parallelize(Seq(
       Point(10, 5, 0),
       Point(30, 30, 0),
       Point(54, 33, 0),
@@ -47,13 +51,18 @@ class KMeansTest extends FlatSpec with Matchers {
       Point(390, 3, 0),
       Point(131, 0, 0),
       Point(197, 6, 0)
-    )
+    ))
 
     // When
-    val results: Array[Int] = KMeans.kmeans(3, data, 100).map(p => p.cat)
+    val results: Array[Int] = KMeans.kmeans(3, rdd, 100).map(p => p.cat).collect()
+
+    // Categories order is unknown but always the same
+    val cat1 = results(0)
+    val cat2 = results(6)
+    val cat3 = results(8)
 
     // Then
-    val expected: Array[Int] = Array(0, 0, 0, 0, 0, 0, 1, 1, 2, 0, 0, 1, 2, 1, 1)
+    val expected: Array[Int] = Array(cat1, cat1, cat1, cat1, cat1, cat1, cat2, cat2, cat3, cat1, cat1, cat2, cat3, cat2, cat2)
 
     results should contain theSameElementsAs expected
   }

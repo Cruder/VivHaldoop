@@ -1,12 +1,28 @@
 package com.cruder.vivhaldoop
 
+import org.apache.spark.rdd.RDD
 import scala.math.{pow, sqrt}
-import scala.util.Random
 import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.spark.sql.functions.lit
+import com.cruder.vivhaldoop.share.AppProperties.spark
 
 case class Point(x: Double, y: Double, cat: Int)
 
 object KMeans {
+  def main(args: Array[String]): Unit = {
+    spark.sqlContext.sql("use twitter")
+    val df: DataFrame = spark.sqlContext.sql("SELECT lat, long FROM twitter.hashtags")
+      .withColumn("cat", lit(0))
+      .withColumnRenamed("lat", "x")
+      .withColumnRenamed("long", "y")
+
+    import spark.sqlContext.implicits._
+    val rdd: RDD[Point] = df.as[Point].rdd
+
+    val rddKMeans: RDD[Point] = kmeans(4, rdd, 1000)
+    //rddKMeans.toDF().write.option("path", path).saveAsTable("kmeans")
+  }
+
   /**
     * returns a Point with the index of the closest center
     */
@@ -43,7 +59,7 @@ object KMeans {
   /**
     * Returns the centers of each categories
     *
-    * @param k      number of centers
+    * @param k      Number of centers
     * @param values The values to use
     */
   def getCenters(k: Int, values: Array[Point]): Array[Point] =
@@ -55,36 +71,57 @@ object KMeans {
       ) toArray
 
   /**
+    * Sums 2 Point coordinates
+    *
+    * @param p1  The first Point
+    * @param p2  The second Point
+    */
+  def sumPoints(p1: Point, p2: Point): Point =
+    Point(p1.x + p2.x, p1.y + p2.y, p1.cat)
+
+  /**
     * Returns a DataFrame with 3 columns
     *
     * @param k          The number of clusters
     * @param values     The values of lat/long or nbWords/nbHashtags.
     * @param iterations Number of iterations of the algorithm
     */
-  def kmeans(k: Int, values: Array[Point], iterations: Int): Array[Point] = {
+  def kmeans(k: Int, values: RDD[Point], iterations: Int): RDD[Point] = {
     // Initialization
-    val r: Random = Random
+   // val r: Random = Random
 
     // Construction de la liste avec une catégorie aléatoire
-    var arr: Array[Point] =
-        values.map(o => Point(o.x, o.y, r.nextInt(k)))
+   // val arr: RDD[Point] =
+     //   values.map(o => Point(o.x, o.y, r.nextInt(k)))
 
-    // k-first centers as Array
-    var centers: Array[Point] = (
+    // k-first centers as Array // takeSample
+    var i = -1
+    var centers: Array[Point] =
+      values.takeSample(withReplacement = true, k)
+      .map(p => {
+        i = i + 1
+        Point(p.x, p.y, i)
+      })
+
+   /* var centers: Array[Point] = (
       for (i <- 0 until k)
         yield Point(arr(i).x, arr(i).y, i)
-      ) toArray
+      ) toArray */
 
     // Cycles
     for (_ <- 0 until iterations) {
-      // Assignation aux clusters
-      arr = arr.map(t => closest(centers, t))
-
       // Calcul des nouveaux centres
-      centers = getCenters(k, arr)
+      centers =
+        values
+          .map(t => closest(centers, t))
+          .map(t => (t.cat, (t, 1.0)))
+          .reduceByKey{(p1, p2) => (sumPoints(p1._1, p2._1), p1._2 + p2._2)}
+          .map{case (cat, (p, cpt)) => (cat, Point(p.x / cpt, p.y / cpt, cat))}
+          .map(t => t._2)
+          .collect()
     }
 
     // Assignation finale
-    arr.map(t => closest(centers, t))
+    values.map(t => closest(centers, t))
   }
 }
