@@ -38,8 +38,8 @@ C'est lui qui vas récupérer les tweets.
 
 ### TOC
 
-* [1. Utilisation de Scala](0001-record-architecture-decisions.md)
-* [2. Récupération tweeter](0002-r-cup-ration-tweeter.md)
-* [3. Utilisation des données équipe Nicolas](0003-utilisation-des-donn-es-quipe-nicolas.md)
-* [4. Nombre de jar](0004-nombre-de-jar.md)
-* [5. Stockage des données](0005-stockage-des-donn-es.md)
+* [1. Utilisation de Scala](/doc/adr/0001-record-architecture-decisions.md)
+* [2. Récupération tweeter](/doc/adr/0002-r-cup-ration-tweeter.md)
+* [3. Utilisation des données équipe Nicolas](/doc/adr/0003-utilisation-des-donn-es-quipe-nicolas.md)
+* [4. Nombre de jar](/doc/adr/0004-nombre-de-jar.md)
+* [5. Stockage des données](/doc/adr/0005-stockage-des-donn-es.md)
