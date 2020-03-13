@@ -56,7 +56,6 @@ object KMeans {
     spark.createDataFrame(rdd)
   }
 
-  /*
   /**
     * Returns the centers of each categories
     *
@@ -70,7 +69,6 @@ object KMeans {
         , values.filter(t => t.cat == i).foldLeft(0.0)(_ + _.y) / values.count(t => t.cat == i) // Average of y
         , i) // Category
       ) toArray
-*/
 
   /**
     * Sums 2 Point coordinates
