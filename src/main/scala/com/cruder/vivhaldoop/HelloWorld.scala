@@ -8,6 +8,7 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
 // scp artifacts/vivhaldoop_jar/vivhaldoop.jar vivhaldoop@edge5.sagean.fr:/home/vivhaldoop
 object HelloWorld {
 //  val logger = LoggerFactory.getLogger(this.getClass)
+  val TIME = "app.tweetsLastSeconds"
 
   def main(args: Array[String]): Unit = {
        println("Hello World")
@@ -21,13 +22,16 @@ object HelloWorld {
 
     val spark = SharedSpark.spark
 
-
-    val ssc = new StreamingContext(spark.sparkContext, Seconds(10))
+    println("=============== CREATE STREAMING CONTEXT ===============")
+    val ssc = new StreamingContext(spark.sparkContext, Seconds(appProperties.getProperty(TIME).toLong))
+    println("=============== CREATE TWITTER STREAMING ===============")
     val tweets = TwitterUtils.createStream(ssc, None)
+    tweets.filter(_.getLang == "en")
 
-//    val hashTags = tweets.map(tweet => tweet.getText.split(" ").filter(_.startsWith("#")))
-    tweets.saveAsObjectFiles("tweets","hashtags.txt")
+    //    val hashTags = tweets.map(tweet => tweet.getText.split(" ").filter(_.startsWith("#")))
+    tweets.saveAsObjectFiles("tweets/tweet","json")
 
+    println("=============== START STREAM LISTENING ===============")
     ssc.start()
     ssc.awaitTermination()
 
