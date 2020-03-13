@@ -7,20 +7,21 @@ import scala.util.Random
 import scala.language.postfixOps
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.functions.lit
-import com.cruder.vivhaldoop.share.AppProperties.{spark, path}
+import com.cruder.vivhaldoop.share.AppProperties.{path, spark}
+import org.apache.spark.sql.types.DoubleType
 
 case class Point(x: Double, y: Double, cat: Int)
 
 object KMeans {
   def main(args: Array[String]): Unit = {
-    val df: DataFrame = spark.read.json(path + "tweets.json")
+    val df: DataFrame = spark.read.json("tweets2.json")
 
     import spark.sqlContext.implicits._
     val rdd: RDD[Point] =
-        df.select(df("lat").alias("x"), df("long").alias("y"), lit(0).alias("cat")).as[Point].rdd
+        df.select(df("lat").cast(DoubleType).alias("x"), df("long").cast(DoubleType).alias("y"), lit(0).alias("cat")).as[Point].rdd
 
     val rddKMeans: RDD[Point] = kmeans(4, rdd, 1000)
-    rddKMeans.toDF().write.option("path", path).saveAsTable("kmeans")
+    //rddKMeans.toDF().write.option("path", path).saveAsTable("kmeans")
   }
 
   /**
@@ -96,14 +97,18 @@ object KMeans {
         values.map(o => Point(o.x, o.y, r.nextInt(k)))
 
     // k-first centers as Array // takeSample
+    var i = -1
     var centers: Array[Point] =
       arr.takeSample(withReplacement = true, k)
+      .map(p => {
+        i = i + 1
+        Point(p.x, p.y, i)
+      })
 
    /* var centers: Array[Point] = (
       for (i <- 0 until k)
         yield Point(arr(i).x, arr(i).y, i)
-      ) toArray
-*/
+      ) toArray */
 
     // Cycles
     for (_ <- 0 until iterations) {
