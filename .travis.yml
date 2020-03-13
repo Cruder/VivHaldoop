@@ -29,5 +29,5 @@ before_deploy:
 deploy:
   provider: script
   script: bash ops/travis_deploy.sh
-  # on:
-  #   branch: master
+  on:
+    branch: master
