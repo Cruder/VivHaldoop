@@ -4,17 +4,24 @@ import org.apache.spark.rdd.RDD
 
 import scala.math.{pow, sqrt}
 import scala.util.Random
+import scala.language.postfixOps
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.functions.lit
+import com.cruder.vivhaldoop.share.AppProperties.path
 
 case class Point(x: Double, y: Double, cat: Int)
 
 object KMeans {
   def main(args: Array[String]): Unit = {
-    val spark: SparkSession = SparkSession.builder().getOrCreate()
-    val df: DataFrame = spark.read.json("/user/vivhaldoop/tweets.json")
+    val spark: SparkSession = SparkSession.builder().master("local[*]").getOrCreate()
+    val df: DataFrame = spark.read.json(path + "tweets.json")
 
-   //df.select($"lat".alias(), $"long", lit(0).alias("cat"))
+    import spark.sqlContext.implicits._
+    val rdd: RDD[Point] =
+        df.select(df("lat").alias("x"), df("long").alias("y"), lit(0).alias("cat")).as[Point].rdd
+
+    val rddKMeans: RDD[Point] = kmeans(4, rdd, 1000)
+    rddKMeans.toDF().write.option("path", path).saveAsTable("kmeans")
   }
 
   /**

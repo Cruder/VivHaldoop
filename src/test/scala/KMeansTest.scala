@@ -7,7 +7,6 @@ import org.scalatest.{FlatSpec, Matchers}
 class KMeansTest extends FlatSpec with Matchers {
   val spark: SparkSession = SparkSession.builder().master("local[*]").getOrCreate()
 
-
   "closest" should "return a Point with the index of the closest center" in {
     // Given
     val centers: Array[Point] = Array(Point(0, 0, 0), Point(100, 100, 1), Point(-1000, -1000, 2))

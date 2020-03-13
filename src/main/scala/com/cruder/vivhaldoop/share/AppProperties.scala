@@ -4,6 +4,8 @@ import java.io.{FileInputStream, IOException, File}
 import java.util.Properties
 
 object AppProperties {
+  val path: String = "/user/vivhaldoop/"
+
   private def init = () => {
 
     val prop = new Properties()
