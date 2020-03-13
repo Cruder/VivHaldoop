@@ -29,6 +29,9 @@ build
 .cache
 .cache-main
 
-#general
+# general
 *.class
 *app.properties
+
+# security
+ops/deploy_rsa
