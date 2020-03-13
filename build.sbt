@@ -4,7 +4,7 @@ version := "0.1"
 
 scalaVersion := "2.12.10"
 
-val sparkVersion = "2.4.0"
+val sparkVersion = "2.4.5"
 val twitterApiVersion = "4.0.7"
 val path = "com.cruder.vivhaldoop"
 //scala
