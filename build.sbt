@@ -6,7 +6,7 @@ scalaVersion := "2.12.10"
 
 val sparkVersion = "2.4.0"
 val twitterApiVersion = "4.0.7"
-
+val path = "com.cruder.vivhaldoop"
 //scala
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % sparkVersion % "provided",
@@ -28,3 +28,5 @@ assemblyMergeStrategy in assembly := {
   case x => (assemblyMergeStrategy in assembly).value(x)
 }
 
+
+mainClass in assembly := Some(s"$path.HelloWorld")

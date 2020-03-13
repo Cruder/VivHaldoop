@@ -1,5 +1,7 @@
 package com.cruder.vivhaldoop
 
+import java.util.function.{Consumer, Predicate}
+
 import com.cruder.vivhaldoop.share.AppProperties.appProperties
 import com.cruder.vivhaldoop.share.SharedSpark
 import org.apache.spark.streaming.twitter.TwitterUtils
@@ -12,13 +14,21 @@ object HelloWorld {
 
   def main(args: Array[String]): Unit = {
        println("Hello World")
-    appProperties.stringPropertyNames().stream()
-      .filter(key => key.startsWith("twitter4j"))
-      .forEach(key => {
+
+    val filterFunc = new Predicate[String] {
+      override def test(key: String): Boolean = key.startsWith("twitter4j")
+    }
+    val consumerFunc = new Consumer[String] {
+      override def accept(key: String): Unit = {
         val value = appProperties.getProperty(key)
         System.setProperty(key, value)
         println(s"'$value'")
-      })
+      }
+    }
+
+    appProperties.stringPropertyNames().stream()
+      .filter( filterFunc )
+      .forEach( consumerFunc )
 
     val spark = SharedSpark.spark
 
@@ -26,10 +36,12 @@ object HelloWorld {
     val ssc = new StreamingContext(spark.sparkContext, Seconds(appProperties.getProperty(TIME).toLong))
     println("=============== CREATE TWITTER STREAMING ===============")
     val tweets = TwitterUtils.createStream(ssc, None)
-    tweets.filter(_.getLang == "en")
+    val statuses = tweets.map(status => status.getText)
+    statuses.print()
+    val enTweets = tweets.filter(_.getLang == "en")
 
     //    val hashTags = tweets.map(tweet => tweet.getText.split(" ").filter(_.startsWith("#")))
-    tweets.saveAsObjectFiles("tweets/tweet","json")
+    enTweets.saveAsObjectFiles("tweets/tweet","json")
 
     println("=============== START STREAM LISTENING ===============")
     ssc.start()
