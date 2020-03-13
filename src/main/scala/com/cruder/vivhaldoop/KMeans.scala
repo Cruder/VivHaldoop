@@ -1,27 +1,25 @@
 package com.cruder.vivhaldoop
 
 import org.apache.spark.rdd.RDD
-
 import scala.math.{pow, sqrt}
-import scala.util.Random
-import scala.language.postfixOps
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.functions.lit
-import com.cruder.vivhaldoop.share.AppProperties.{path, spark}
-import org.apache.spark.sql.types.DoubleType
+import com.cruder.vivhaldoop.share.AppProperties.spark
 
 case class Point(x: Double, y: Double, cat: Int)
 
 object KMeans {
   def main(args: Array[String]): Unit = {
-    /*
-    val df: DataFrame = spark.read.json("tweets2.json")
+    spark.sqlContext.sql("use twitter")
+    val df: DataFrame = spark.sqlContext.sql("SELECT lat, long FROM twitter.hashtags")
+      .withColumn("cat", lit(0))
+      .withColumnRenamed("lat", "x")
+      .withColumnRenamed("long", "y")
 
     import spark.sqlContext.implicits._
-    val rdd: RDD[Point] =
-        df.select(df("lat").cast(DoubleType).alias("x"), df("long").cast(DoubleType).alias("y"), lit(0).alias("cat")).as[Point].rdd
+    val rdd: RDD[Point] = df.as[Point].rdd
 
-    val rddKMeans: RDD[Point] = kmeans(4, rdd, 1000)*/
+    val rddKMeans: RDD[Point] = kmeans(4, rdd, 1000)
     //rddKMeans.toDF().write.option("path", path).saveAsTable("kmeans")
   }
 
@@ -58,6 +56,7 @@ object KMeans {
     spark.createDataFrame(rdd)
   }
 
+  /*
   /**
     * Returns the centers of each categories
     *
@@ -71,7 +70,7 @@ object KMeans {
         , values.filter(t => t.cat == i).foldLeft(0.0)(_ + _.y) / values.count(t => t.cat == i) // Average of y
         , i) // Category
       ) toArray
-
+*/
 
   /**
     * Sums 2 Point coordinates
@@ -91,16 +90,16 @@ object KMeans {
     */
   def kmeans(k: Int, values: RDD[Point], iterations: Int): RDD[Point] = {
     // Initialization
-    val r: Random = Random
+   // val r: Random = Random
 
     // Construction de la liste avec une catégorie aléatoire
-    val arr: RDD[Point] =
-        values.map(o => Point(o.x, o.y, r.nextInt(k)))
+   // val arr: RDD[Point] =
+     //   values.map(o => Point(o.x, o.y, r.nextInt(k)))
 
     // k-first centers as Array // takeSample
     var i = -1
     var centers: Array[Point] =
-      arr.takeSample(withReplacement = true, k)
+      values.takeSample(withReplacement = true, k)
       .map(p => {
         i = i + 1
         Point(p.x, p.y, i)
@@ -115,7 +114,7 @@ object KMeans {
     for (_ <- 0 until iterations) {
       // Calcul des nouveaux centres
       centers =
-        arr
+        values
           .map(t => closest(centers, t))
           .map(t => (t.cat, (t, 1.0)))
           .reduceByKey{(p1, p2) => (sumPoints(p1._1, p2._1), p1._2 + p2._2)}
@@ -125,6 +124,6 @@ object KMeans {
     }
 
     // Assignation finale
-    arr.map(t => closest(centers, t))
+    values.map(t => closest(centers, t))
   }
 }

@@ -9,7 +9,6 @@ import org.apache.spark.sql.SparkSession
 object AppProperties {
   val conf: SparkConf = new SparkConf()
     .setAppName("vivhaldoop")
-    .set("spark.hadoop.validateOutputSpecs", "true")
 
   val spark: SparkSession = SparkSession
     .builder
